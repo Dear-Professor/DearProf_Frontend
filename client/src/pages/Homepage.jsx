@@ -3,17 +3,29 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import pencil from "../assets/images/Pencil.svg";
 import homeUI from "../assets/images/homeUI.svg";
-import letterDummy from "../assets/images/letterDummy.svg";
+import EnvelopeFrontGreen from "../assets/images/envelopeFrontGreen.svg";
+import EnvelopeFront from "../assets/images/envelopeFrontBlue.svg";
 
 const Homepage = () => {
   const navigate = useNavigate();
+
   return (
     <Container>
       <homeUI src={homeUI} alt="Envelope Theme" />
       <Title>Dear Prof.</Title>
+      <Navigator>
+        <CheckButton onClick={() => navigate("/write")}>
+          <img src={EnvelopeFrontGreen} alt="Envelope" />
+          <CheckName>메일 교정하기</CheckName>
+        </CheckButton>
+        <AImailButton onClick={() => navigate("/templates")}>
+          <img src={EnvelopeFront} alt="Envelope" />
+          <AIName>간편 메일 작성하기</AIName>
+        </AImailButton>
+      </Navigator>
       <Button>
-        <LoginButton onClick={() => navigate("/login")}>로그인</LoginButton>
-        <SubmitButton onClick={() => navigate("/signup")}>
+        <LoginButton onClick={() => navigate("/writes")}>로그인</LoginButton>
+        <SubmitButton onClick={() => navigate("/templates")}>
           회원가입
         </SubmitButton>
       </Button>
@@ -42,13 +54,70 @@ const Container = styled.div`
 
 const Title = styled.button`
   font-family: "PreBold";
-  font-size: 4rem;
+  font-size: 4.3rem;
   //text-align: center;
   margin: 0;
   position: absolute;
-  top: 40%;
+  top: 37%;
   left: 50%;
   transform: translate(-50%, -50%); /* 정중앙에 위치하게 조정 */
+`;
+
+const Navigator = styled.div`
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 3rem;
+`;
+
+const CheckButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  img {
+    width: 100px;
+    height: auto;
+  }
+
+  &:hover img {
+    opacity: 0.8;
+  }
+`;
+
+const CheckName = styled.div`
+  text-align: center;
+  font-family: "PreRegular";
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-top: 0.3rem;
+`;
+
+const AIName = styled.div`
+  text-align: center;
+  font-family: "PreRegular";
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-top: 0.3rem;
+`;
+
+const AImailButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  img {
+    width: 97px;
+    height: auto;
+  }
+
+  &:hover img {
+    opacity: 0.8;
+  }
 `;
 
 const Button = styled.button`
@@ -63,13 +132,13 @@ const Button = styled.button`
 const LoginButton = styled.button`
   padding: 0.8rem;
   font-family: "PreBold";
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #fff;
   background-color: #000;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 10rem;
+  width: 9rem;
 
   &:hover {
     background-color: #333;
@@ -79,13 +148,13 @@ const LoginButton = styled.button`
 const SubmitButton = styled.button`
   padding: 0.8rem;
   font-family: "PreBold";
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: black;
   background-color: #fff;
   border: 1px solid black;
   border-radius: 4px;
   cursor: pointer;
-  width: 10rem;
+  width: 9rem;
 
   &:hover {
     background-color: #f0f0f0;

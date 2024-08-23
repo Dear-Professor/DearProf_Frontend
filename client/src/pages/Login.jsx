@@ -59,6 +59,7 @@ const InputWrapper = styled.div`
 
 const Label = styled.label`
   font-size: 1rem;
+  font-family: "PreBold";
   margin-bottom: 0.5rem;
   color: #333;
   font-family: "PreRegular";

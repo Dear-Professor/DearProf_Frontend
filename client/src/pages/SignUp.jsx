@@ -74,8 +74,8 @@ const FormContainer = styled.div`
 
 const FormHeader = styled.h1`
   text-align: center;
+  font-family: "PreBold";
   font-size: 2rem;
-  font-weight: bold;
   margin-bottom: 3rem;
 `;
 
