@@ -21,6 +21,8 @@ function App() {
 
         <Route path="/write" element={<WritePage />} />
         <Route path="/templates" element={<Templates />} />
+        <Route path="/spellChecker" element={<WritePage />} />
+        <Route path="/AI" element={<Templates />} />
         <Route path="/mailbox" element={<Mailbox />} />
         <Route path="/my" element={<Mypage />} />
 

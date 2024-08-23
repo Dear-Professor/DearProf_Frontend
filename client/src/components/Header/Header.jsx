@@ -10,10 +10,10 @@ const Header = () => {
           <Logo />
         </Link>
         <MenuWrapper>
-          <Link to="/write">
+          <Link to="/spellChecker">
             <Menu>Write</Menu>
           </Link>
-          <Link to="/templates">
+          <Link to="/AI">
             <Menu>Templates</Menu>
           </Link>
           <Link to="/mailbox">
