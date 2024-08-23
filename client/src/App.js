@@ -8,7 +8,7 @@ import WritePage from "./pages/WritePage";
 import Templates from "./pages/Templates";
 import Mailbox from "./pages/Mailbox";
 import Mypage from "./pages/Mypage";
-
+import TemplatesCheck from "./pages/TemplatesCheck";
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route path="/mailbox" element={<Mailbox />} />
         <Route path="/my" element={<Mypage />} />
 
+        <Route path="/templates-check" element={<TemplatesCheck />} />
       </Routes>
     </BrowserRouter>
   );

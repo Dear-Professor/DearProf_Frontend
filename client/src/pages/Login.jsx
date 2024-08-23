@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import EnvelopeImage from "../assets/images/signUpEnvelope.png";
+import Header from "../components/Header/Header";
 
 const LoginForm = () => {
   return (
     <>
+      <Header />
       <FormContainer>
         <FormHeader>로그인</FormHeader>
         <Form>
@@ -30,7 +32,7 @@ const FormContainer = styled.div`
   padding: 2rem;
   background-color: #fff;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  //border-radius: 8px;
+  position: relative;
 `;
 
 const FormHeader = styled.h1`
@@ -43,20 +45,25 @@ const FormHeader = styled.h1`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2000;
   gap: 1.5rem;
 `;
 
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 52%;
   margin: 0 auto;
 `;
 
 const Label = styled.label`
-  font-size: 14px;
+  font-size: 1rem;
   margin-bottom: 0.5rem;
   color: #333;
+  font-family: "PreRegular";
+  font-weight: bold;
+  margin-bottom: 1%;
 `;
 
 const Input = styled.input`
@@ -73,7 +80,8 @@ const Input = styled.input`
 
 const LoginButton = styled.button`
   padding: 15px;
-  font-size: 16px;
+  font-family: "PreBold";
+  font-size: 1.2rem;
   color: #fff;
   background-color: #000;
   border: none;
@@ -99,5 +107,10 @@ const FormField = ({ label, placeholder }) => {
 };
 
 const Envelope = styled.img`
-  width: 100%;
+  position: absolute;
+  bottom: -10rem; /* 폼의 하단에 위치하도록 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  z-index: -1;
 `;
