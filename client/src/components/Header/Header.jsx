@@ -67,6 +67,7 @@ const Logo = styled.div`
 `;
 
 const Menu = styled.span`
+  font-family: "PreRegular";
   font-size: 10px;
   color: black;
   font-weight: normal;
