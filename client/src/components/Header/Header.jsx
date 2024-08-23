@@ -14,7 +14,7 @@ const Header = () => {
             <Menu>Write</Menu>
           </Link>
           <Link to="/templates">
-            <Menu>Template</Menu>
+            <Menu>Templates</Menu>
           </Link>
           <Link to="/mailbox">
             <Menu>Mailbox</Menu>
