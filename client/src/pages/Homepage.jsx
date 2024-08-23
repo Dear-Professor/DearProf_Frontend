@@ -24,8 +24,8 @@ const Homepage = () => {
         </AImailButton>
       </Navigator>
       <Button>
-        <LoginButton onClick={() => navigate("/writes")}>로그인</LoginButton>
-        <SubmitButton onClick={() => navigate("/templates")}>
+        <LoginButton onClick={() => navigate("/login")}>로그인</LoginButton>
+        <SubmitButton onClick={() => navigate("/signup")}>
           회원가입
         </SubmitButton>
       </Button>
