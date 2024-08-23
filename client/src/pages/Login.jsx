@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import EnvelopeImage from "../assets/images/signUpEnvelope.png";
+import EnvelopeImage from "../assets/images/LetterBackBlack.png";
 import Header from "../components/Header/Header";
+import LetterFront from "../assets/images/LetterFrontBlack.svg";
 import { axiosInstance } from "../api/axios";
 
 const LoginForm = () => {
@@ -29,6 +30,7 @@ const LoginForm = () => {
   return (
     <>
       <Header />
+      <Envelope src={EnvelopeImage} alt="Envelope Theme" />
       <FormContainer>
         <FormHeader>로그인</FormHeader>
         <Form onSubmit={handleLogin}>
@@ -49,7 +51,7 @@ const LoginForm = () => {
           <LoginButton type="submit">로그인하기</LoginButton>
         </Form>
       </FormContainer>
-      <Envelope src={EnvelopeImage} alt="Envelope Theme" />
+      <Envelope1 src={LetterFront} alt="Envelope Theme" />
     </>
   );
 };
@@ -57,7 +59,8 @@ const LoginForm = () => {
 export default LoginForm;
 
 const FormContainer = styled.div`
-  width: 85%;
+  width: 50%;
+  height: 500px;
   margin: 8rem auto;
   padding: 2rem;
   background-color: #fff;
@@ -150,9 +153,16 @@ const ErrorText = styled.p`
 
 const Envelope = styled.img`
   position: absolute;
-  bottom: -10rem; /* 폼의 하단에 위치하도록 */
+  bottom: 0rem; /* 폼의 하단에 위치하도록 */
   left: 50%;
   transform: translateX(-50%);
-  width: 120%;
+  width: 70%;
   z-index: -1;
+`;
+const Envelope1 = styled.img`
+  position: fixed;
+  bottom: 0px; /* 폼의 하단에 위치하도록 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
 `;
