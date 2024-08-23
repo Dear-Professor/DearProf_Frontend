@@ -14,7 +14,7 @@ const Header = () => {
             <Menu>Write</Menu>
           </Link>
           <Link to="/templates">
-            <Menu>Template</Menu>
+            <Menu>Templates</Menu>
           </Link>
           <Link to="/mailbox">
             <Menu>Mailbox</Menu>
@@ -67,6 +67,7 @@ const Logo = styled.div`
 `;
 
 const Menu = styled.span`
+  font-family: "PreRegular";
   font-size: 10px;
   color: black;
   font-weight: normal;
