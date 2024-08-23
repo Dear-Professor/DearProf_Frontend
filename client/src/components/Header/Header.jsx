@@ -16,12 +16,6 @@ const Header = () => {
           <Link to="/AI">
             <Menu>Templates</Menu>
           </Link>
-          <Link to="/mailbox">
-            <Menu>Mailbox</Menu>
-          </Link>
-          <Link to="/my">
-            <Menu>My</Menu>
-          </Link>
         </MenuWrapper>
       </LogoWrapper>
     </Container>

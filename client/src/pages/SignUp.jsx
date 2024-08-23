@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import EnvelopeImage from "../assets/images/signUpEnvelope.svg";
+import LetterBack from "../assets/images/LetterBackBlack.png";
 import Header from "../components/Header/Header";
+import LetterFront from "../assets/images/LetterFrontBlack.svg";
 
 const SignUp = () => {
   return (
     <>
       <Header />
+      <Envelope src={LetterBack} alt="Envelope Theme" />
       <FormContainer>
         <FormHeader>회원가입</FormHeader>
         <Form>
@@ -50,12 +52,11 @@ const SignUp = () => {
           <InputWrapper>
             <Label>학년</Label>
             <Input type="text" placeholder="ex. 3" />
+            <SubmitButton>가입하기</SubmitButton>
           </InputWrapper>
-
-          <SubmitButton>가입하기</SubmitButton>
+          <Envelope1 src={LetterFront} alt="Envelope Theme" />
         </Form>
       </FormContainer>
-      <Envelope src={EnvelopeImage} alt="Envelope Theme" />
     </>
   );
 };
@@ -63,7 +64,8 @@ const SignUp = () => {
 export default SignUp;
 
 const FormContainer = styled.div`
-  width: 85%;
+  width: 60%;
+  height: 100%;
   margin: 8rem auto;
   padding: 2rem;
   background-color: #fff;
@@ -74,28 +76,29 @@ const FormContainer = styled.div`
 
 const FormHeader = styled.h1`
   text-align: center;
-  font-family: "PreBold";
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 500;
   margin-bottom: 3rem;
+  font-family: "GmarketSansBold";
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   position: relative;
-  z-index: 2000;
+  z-index: 2;
   gap: 1.5rem;
 `;
 
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 52%;
   margin: 0 auto;
 `;
 
 const Label = styled.label`
   font-size: 1rem;
+  text-align: left;
   margin-bottom: 0.5rem;
   color: #333;
   font-family: "PreRegular";
@@ -103,7 +106,10 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
+  display: flex;
+  align-items: center;
   padding: 0.5rem;
+  width: 21.563rem;
   font-family: "PreRegular";
   font-size: 1rem;
   border: none;
@@ -124,12 +130,13 @@ const SubmitButton = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
   margin-top: 20px;
-  width: 60%;
+  width: 21.563rem;
   margin-left: auto;
   margin-right: auto;
 
-  z-index: 100;
+  z-index: 1;
 
   &:hover {
     background-color: #333;
@@ -137,10 +144,17 @@ const SubmitButton = styled.button`
 `;
 
 const Envelope = styled.img`
-  position: absolute;
-  bottom: -55rem; /* 폼의 하단에 위치하도록 */
+  position: fixed;
+  bottom: -8rem; /* 폼의 하단에 위치하도록 */
   left: 50%;
   transform: translateX(-50%);
-  width: 120%;
-  //z-index: 4; 이거 하면 가입하기 버튼이 안 눌린다..
+  width: 70%;
+  z-index: 1;
+`;
+const Envelope1 = styled.img`
+  position: fixed;
+  bottom: -7rem; /* 폼의 하단에 위치하도록 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
 `;

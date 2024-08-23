@@ -4,6 +4,7 @@ import styled, { keyframes } from "styled-components";
 import LetterBack from "../assets/images/LetterBack.svg";
 import LetterFront from "../assets/images/LetterFront.svg";
 import Letter from "../assets/images/Letter.svg";
+import { Link } from "react-router-dom";
 
 const Templates = () => {
   const [email, setEmail] = useState("");
@@ -61,6 +62,8 @@ const Templates = () => {
                     "추천서 부탁",
                     "수업 내용 질문",
                     "출결 인정",
+                    "장학금 관련",
+                    "기타",
                   ].map((purpose) => (
                     <PurposeBox
                       key={purpose}
@@ -94,7 +97,20 @@ const Templates = () => {
                             지각, 결석, 공결 등 출결과 <br />
                             관련된 모든 것들을 처리해드릴게요.
                           </>
-                        ) : null}
+                        ) : purpose === "장학금 관련" ? (
+                          <>
+                            장학금이 절실한 당신.
+                            <br />
+                            장학금 관련 메일이 필요하신가요?
+                          </>
+                        ) : (
+                          <>
+                            꼭 들어가야 하는 내용을
+                            <br />
+                            단어 단어로 끊어서 작성해주시면 <br /> 자동으로
+                            생성해드릴게요.
+                          </>
+                        )}
                       </Description>
                     </PurposeBox>
                   ))}
@@ -112,7 +128,9 @@ const Templates = () => {
                 <Message>자유롭게 수정하신 후 전송하세요.</Message>
                 <TextArea />
                 <BtnWrapper>
-                  <CreateBtn>이메일 저장하기</CreateBtn>
+                  <Link to="/templates-check">
+                    <CreateBtn>이메일 저장하기</CreateBtn>
+                  </Link>
                 </BtnWrapper>
               </SubmittedContent>
             )}

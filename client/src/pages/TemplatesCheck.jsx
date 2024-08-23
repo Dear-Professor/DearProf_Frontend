@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import EnvelopeFrontImage from "../assets/images/envelopeFront.svg";
-import EnvelopeBackImage from "../assets/images/envelopeBack.svg";
+import EnvelopeBackImage from "../assets/images/EnvelopeBackImage.svg";
 import Header from "../components/Header/Header";
 import { useNavigate } from "react-router-dom";
 
