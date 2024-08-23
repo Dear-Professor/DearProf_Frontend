@@ -4,6 +4,7 @@ import styled, { keyframes } from "styled-components";
 import LetterBack from "../assets/images/LetterBackGreen.svg";
 import LetterFront from "../assets/images/LetterFrontGreen.svg";
 import Letter from "../assets/images/LetterGreen.png";
+import { Link } from "react-router-dom";
 
 const WritePage = () => {
   const [email, setEmail] = useState("");
@@ -69,7 +70,9 @@ const WritePage = () => {
                 <Message>자유롭게 수정하신 후 전송하세요.</Message>
                 <TextArea />
                 <BtnWrapper>
-                  <CreateBtn>이메일 저장하기</CreateBtn>
+                  <Link to="/spellChecker-check">
+                    <CreateBtn>이메일 저장하기</CreateBtn>
+                  </Link>
                 </BtnWrapper>
               </SubmittedContent>
             )}
