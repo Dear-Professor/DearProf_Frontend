@@ -23,6 +23,9 @@ const GlobalStyles = createGlobalStyle`
         cursor: pointer;
         background: transparent;
     }
+    html {
+        font-size: 16px; 
+        }
 `;
 
 export default GlobalStyles;
