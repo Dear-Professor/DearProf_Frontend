@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import EnvelopeFrontImage from "../assets/images/envelopeFront.svg";
-import EnvelopeBackImage from "../assets/images/EnvelopeBackImage.svg";
+import EnvelopeFrontImage from "../assets/images/envelopeFrontGreen.svg";
+import EnvelopeBackImage from "../assets/images/EnvelopeBackImageGreen.png";
 import Header from "../components/Header/Header";
 import { useNavigate } from "react-router-dom";
 
-const TemplatesCheck = () => {
+const SpellCheckerCheck = () => {
   const navigate = useNavigate();
   const [flipped, setFlipped] = useState(false); // 플립 상태 관리
   const [ment, setMent] = useState({
@@ -46,7 +46,7 @@ const TemplatesCheck = () => {
   );
 };
 
-export default TemplatesCheck;
+export default SpellCheckerCheck;
 
 const MentContainer = styled.div`
   width: 85%;

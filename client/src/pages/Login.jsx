@@ -1,25 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import EnvelopeImage from "../assets/images/signUpEnvelope.png";
+import EnvelopeImage from "../assets/images/LetterBackBlack.png";
 import Header from "../components/Header/Header";
+import LetterFront from "../assets/images/LetterFrontBlack.svg";
+import { axiosInstance } from "../api/axios";
 
 const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); // 폼 제출 시 페이지 새로 고침 방지
+    setError(""); // 이전 오류 초기화
+
+    try {
+      const response = await axiosInstance.post("/accounts/login/", {
+        email,
+        password,
+      });
+      console.log(response.data); // 성공적으로 로그인된 경우
+      // 예: localStorage에 토큰 저장 및 리디렉션
+    } catch (err) {
+      setError("로그인 실패! 이메일과 비밀번호를 확인해주세요.");
+      console.error(err); // 오류 로그 출력
+    }
+  };
+
   return (
     <>
       <Header />
+      <Envelope src={EnvelopeImage} alt="Envelope Theme" />
       <FormContainer>
         <FormHeader>로그인</FormHeader>
-        <Form>
+        <Form onSubmit={handleLogin}>
           <FormField
             label="아이디(이메일 형식)"
             placeholder="ex. davin00@naver.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <FormField label="비밀번호" placeholder="8~12자리 영어, 숫자 조합" />
-
-          <LoginButton>로그인하기</LoginButton>
+          <FormField
+            label="비밀번호"
+            placeholder="8~12자리 영어, 숫자 조합"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {error && <ErrorText>{error}</ErrorText>}
+          <LoginButton type="submit">로그인하기</LoginButton>
         </Form>
       </FormContainer>
-      <Envelope src={EnvelopeImage} alt="Envelope Theme" />
+      <Envelope1 src={LetterFront} alt="Envelope Theme" />
     </>
   );
 };
@@ -27,7 +59,8 @@ const LoginForm = () => {
 export default LoginForm;
 
 const FormContainer = styled.div`
-  width: 85%;
+  width: 50%;
+  height: 500px;
   margin: 8rem auto;
   padding: 2rem;
   background-color: #fff;
@@ -64,7 +97,6 @@ const Label = styled.label`
   color: #333;
   font-family: "PreRegular";
   font-weight: bold;
-  margin-bottom: 1%;
 `;
 
 const Input = styled.input`
@@ -98,20 +130,39 @@ const LoginButton = styled.button`
   }
 `;
 
-const FormField = ({ label, placeholder }) => {
+const FormField = ({ label, placeholder, type = "text", value, onChange }) => {
   return (
     <InputWrapper>
       <Label>{label}</Label>
-      <Input type="text" placeholder={placeholder} />
+      <Input
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
     </InputWrapper>
   );
 };
 
+const ErrorText = styled.p`
+  color: red;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 10px;
+`;
+
 const Envelope = styled.img`
   position: absolute;
-  bottom: -10rem; /* 폼의 하단에 위치하도록 */
+  bottom: 0rem; /* 폼의 하단에 위치하도록 */
   left: 50%;
   transform: translateX(-50%);
-  width: 120%;
+  width: 70%;
   z-index: -1;
+`;
+const Envelope1 = styled.img`
+  position: fixed;
+  bottom: 0px; /* 폼의 하단에 위치하도록 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
 `;
