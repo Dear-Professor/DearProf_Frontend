@@ -29,7 +29,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await axiosInstance.post("/accounts/registe/", {
+      const response = await axiosInstance.post("/accounts/register/", {
         email,
         password,
         name,

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import EnvelopeImage from "../assets/images/LetterBackBlack.png";
 import Header from "../components/Header/Header";
 import LetterFront from "../assets/images/LetterFrontBlack.svg";
@@ -9,18 +10,30 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // 폼 제출 시 페이지 새로 고침 방지
-    setError(""); // 이전 오류 초기화
+    e.preventDefault();
+    setError("");
 
     try {
       const response = await axiosInstance.post("/accounts/login/", {
         email,
         password,
       });
-      console.log(response.data); // 성공적으로 로그인된 경우
-      // 예: localStorage에 토큰 저장 및 리디렉션
+      console.log(response.data); // 로그인 성공 시 반환된 데이터
+      const { access } = response.data; // 토큰 가져오기
+
+      // 토큰을 localStorage에 저장
+      localStorage.setItem("authToken", access);
+
+      // axiosInstance의 기본 헤더에 Authorization 설정
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${access}`;
+
+      // 홈 화면으로 리디렉션
+      navigate("/");
     } catch (err) {
       setError("로그인 실패! 이메일과 비밀번호를 확인해주세요.");
       console.error(err); // 오류 로그 출력
@@ -95,8 +108,6 @@ const Label = styled.label`
   font-family: "PreBold";
   margin-bottom: 0.5rem;
   color: #333;
-  font-family: "PreRegular";
-  font-weight: bold;
 `;
 
 const Input = styled.input`
@@ -159,6 +170,7 @@ const Envelope = styled.img`
   width: 70%;
   z-index: -1;
 `;
+
 const Envelope1 = styled.img`
   position: fixed;
   bottom: 0px; /* 폼의 하단에 위치하도록 */
