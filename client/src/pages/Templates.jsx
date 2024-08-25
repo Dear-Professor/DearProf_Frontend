@@ -4,23 +4,84 @@ import styled, { keyframes } from "styled-components";
 import LetterBack from "../assets/images/LetterBack.svg";
 import LetterFront from "../assets/images/LetterFront.svg";
 import Letter from "../assets/images/Letter.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { axiosInstance } from "../api/axios";
 
 const Templates = () => {
+  const { id } = useParams(); // URL의 {id}를 가져옴
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [selectedPurpose, setSelectedPurpose] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
   const isFormComplete = email.trim() !== "" && subject.trim() !== "";
-  const [submitted, setSubmitted] = useState(false); // 버튼 클릭 상태 추가
   const isPurposeSelected = selectedPurpose !== "";
-  const handleSubmit = () => {
+  useEffect(() => {
+    // 페이지 로드 시 API 호출로 기존 데이터 가져오기
+    const fetchTemplateData = async () => {
+      try {
+        const token = localStorage.getItem("authToken"); // 토큰을 가져옴
+        const response = await axiosInstance.get(`mails/selectOptions`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response.status === 200) {
+          const { prof_email, subject } = response.data;
+          setEmail(prof_email);
+          setSubject(subject);
+        }
+      } catch (error) {
+        console.error("Failed to fetch template data:", error);
+      }
+    };
+
+    fetchTemplateData();
+  }, [id]);
+  const handleSubmit = async () => {
     if (isFormComplete && isPurposeSelected) {
-      setSubmitted(true); // 폼이 완료되면 상태 업데이트
+      setSubmitted(true);
+      // 여기서 API를 호출하여 템플릿을 생성할 수 있음
+      try {
+        const response = await sendTemplateRequest(
+          email,
+          subject,
+          selectedPurpose
+        );
+        if (response.status === "success") {
+          console.log("Generated Template:", response.data.template);
+        } else {
+          console.error("Error:", response.data.message);
+        }
+      } catch (error) {
+        console.error("API Request failed:", error);
+      }
     }
   };
+
+  const sendTemplateRequest = async (title, prof_email, subject, purpose) => {
+    try {
+      const token = localStorage.getItem("authToken"); // 토큰을 가져옴
+      const response = await axiosInstance.post(
+        "mails/selectOptions/",
+        {
+          title,
+          prof_email,
+          subject,
+          purpose,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      return response.data; // API 응답 반환
+    } catch (error) {
+      console.error("API Request failed:", error);
+      throw error;
+    }
+  };
+
   const handlePurposeClick = (purpose) => {
     setSelectedPurpose(selectedPurpose === purpose ? "" : purpose);
   };
+
   return (
     <Container>
       <Header />
@@ -141,7 +202,10 @@ const Templates = () => {
     </Container>
   );
 };
+
 export default Templates;
+
+// 나머지 스타일드 컴포넌트는 기존 코드와 동일
 
 const slideUp = keyframes`
   0% {
